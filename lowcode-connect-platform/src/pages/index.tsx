@@ -13,6 +13,13 @@ const MainPage = () => {
     }
   }, [isLoggedIn, router]);
 
+  const logout = useAuthStore((state) => state.logout);
+
+  const handleLogout = () => {
+    logout();
+    router.push('/login'); // 라우팅을 컴포넌트 내에서 처리
+  };
+
   const cardsData = [
     { title: 'Link 1', description: 'This is the first link.', url: '/link1' },
     { title: 'Link 2', description: 'This is the second link.', url: '/link2' },
@@ -27,6 +34,7 @@ const MainPage = () => {
           <Card key={index} title={card.title} description={card.description} url={card.url} />
         ))}
       </div>
+      <button onClick={handleLogout}>logout</button>
     </div>
   );
 };

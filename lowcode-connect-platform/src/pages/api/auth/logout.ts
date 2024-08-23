@@ -1,6 +1,6 @@
 // src/api/auth/logout.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { deleteCookie } from '../../utils/cookies';
+import { deleteCookie } from '../../../utils/cookies';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   deleteCookie(res, 'accessToken');

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
-import { getCookie } from '../../utils/cookies';
+import { getCookie } from '../../../utils/cookies';
 
 const SECRET_KEY = 'your_secret_key';
 

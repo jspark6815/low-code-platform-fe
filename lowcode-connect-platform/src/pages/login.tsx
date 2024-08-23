@@ -113,10 +113,25 @@ const LoginPage = ({ bgColor }: Props) => {
     }
   }, [isLoggedIn, router]);
 
-  const handleLogin = () => {
-    login();
-    router.push('/');
+  const handleLogin = async () => {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      let res = await response.json();
+
+      login(res.data.accessToken, res.data.refreshToken);
+      router.push('/');
+    } else {
+      alert('Invalid credentials');
+    }
   };
+
 
   return (
     <LoginContainer bgColor={bgColor}>

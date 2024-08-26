@@ -10,7 +10,7 @@ interface LayoutProps {
 const LayoutContainer = styled.div`
   display: flex;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 `;
 
 const ContentContainer = styled.div`
@@ -22,6 +22,7 @@ const ContentContainer = styled.div`
 const Content = styled.main`
   flex-grow: 1;
   padding: 20px;
+  background-color: #f5f7f9;
 `;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {

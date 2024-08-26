@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 import { persist, PersistOptions } from 'zustand/middleware';
 
 // 상태의 타입 정의
@@ -10,7 +10,6 @@ interface AuthState {
   logout: () => void;
 }
 
-// Zustand 스토어 생성
 export const useAuthStore = create(
   persist<AuthState>(
     (set) => ({

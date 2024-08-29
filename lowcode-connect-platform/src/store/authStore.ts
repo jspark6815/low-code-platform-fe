@@ -42,7 +42,7 @@ export const useAuthStore = create(
     }),
     {
       name: 'auth-storage', // 로컬 스토리지에 저장될 이름
-      getStorage: () => localStorage, // 로컬 스토리지를 사용할지, 기본 설정
+      getStorage: () => sessionStorage, // 로컬 스토리지를 사용할지, 기본 설정
     } as PersistOptions<AuthState> // persist의 옵션에 타입 명시
   )
 );

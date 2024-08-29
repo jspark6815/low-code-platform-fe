@@ -15,9 +15,9 @@ const CardComponent = styled.div`
   border-radius: 8px;
   cursor: pointer;
   height: 200px;
-  width: 33%;
+  width: 30%;
   background-color: white;
-`
+`;
 
 const Card: FC<CardProps> = ({ title, description, url }) => {
   const router = useRouter();

@@ -2,8 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 import { getCookie, setCookie } from '../../../utils/cookies';
 
-const SECRET_KEY = 'your_secret_key';
-const REFRESH_SECRET_KEY = 'your_refresh_secret_key';
+const SECRET_KEY = 'low_code_platform_secret';
+const REFRESH_SECRET_KEY = 'low_code_platform_secret_refresh';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const refreshToken = getCookie(req, 'refreshToken');
@@ -13,7 +13,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   try {
-    const decoded = jwt.verify(refreshToken, REFRESH_SECRET_KEY);
+    const decoded = jwt.verify(refreshToken, REFRESH_SECRET_KEY) as jwt.JwtPayload;
 
     const newAccessToken = jwt.sign({ email: decoded.email }, SECRET_KEY, { expiresIn: '15m' });
 

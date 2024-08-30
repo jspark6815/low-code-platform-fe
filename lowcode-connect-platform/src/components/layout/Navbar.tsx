@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Icon from '../default/Icon';
+import { useAuthStore } from '@/store/authStore';
 
 
 const Sidebar = styled.nav`
@@ -28,10 +29,11 @@ const NavContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
+  align-items: stretch;
   padding: 20px;
 
   width: 250px;
+  height: 100%;
 `;
 
 const SidebarItem = styled.div<{ active?: string }>`
@@ -65,7 +67,18 @@ const SidebarItem = styled.div<{ active?: string }>`
 
 const ItemLabel = styled.span`
   margin-left: 10px;
-`
+`;
+
+const LogoutButton = styled.button`
+  width: fit-content;
+  height: 50px;
+
+  border: none;
+  background: none;
+  align-self: center;
+  margin-top: auto;
+  cursor: pointer;
+`;
 
 interface NavItem {
   href: string;
@@ -75,10 +88,12 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { href: '/', label: 'Home', icon: 'house'},
-  { href: '/user', label: '유저 권한 관리', icon: 'user'}
+  { href: '/user/access_manage', label: '유저 권한 관리', icon: 'user'},
+  { href: '/application', label: '앱 관리', icon: 'application'}
 ];
 
 const Navbar: React.FC = () => {
+  const logout = useAuthStore((state) => state.logout);
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
 
@@ -89,6 +104,11 @@ const Navbar: React.FC = () => {
   if (!mounted) {
     return null;
   }
+
+  const handleLogout = () => {
+    logout();
+    router.push('/login'); // 라우팅을 컴포넌트 내에서 처리
+  };
   
   return (
     <Sidebar>
@@ -102,6 +122,9 @@ const Navbar: React.FC = () => {
             </SidebarItem>
           </Link>
         ))}
+        <LogoutButton onClick={handleLogout}>
+          <Icon name={'logout'} size='lg'/>
+        </LogoutButton>
       </NavContainer>
     </Sidebar>
   );

@@ -1,6 +1,6 @@
 import theme from "@/styles/theme";
 import { IconType } from "react-icons";
-import { FaHouse, FaUser } from "react-icons/fa6";
+import { FaHouse, FaUser, FaRightFromBracket, FaWindowRestore } from "react-icons/fa6";
 import styled from "styled-components";
 
 const baseStyle = `
@@ -33,6 +33,8 @@ type IconProps = {
 const iconNameSpace: Record<string, IconType> = {
   house: FaHouse,
   user: FaUser,
+  logout: FaRightFromBracket,
+  application: FaWindowRestore,
 };
 
 const StyledIcon = styled.span<{ size: 'lg' | 'md' | 'sm', color: string }>`

@@ -1,8 +1,6 @@
-// import { useAuthStore } from '@/store/authStore';
-import { useAuthStore } from '../../store/authStore';
-import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
+import ProfileButton from './ProfileButton';
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -25,19 +23,12 @@ const UserMenu = styled.div`
 `;
 
 const Header = () => {
-  const logout = useAuthStore((state) => state.logout);
-  const router = useRouter();
-
-  const handleLogout = () => {
-    logout();
-    router.push('/login'); // 라우팅을 컴포넌트 내에서 처리
-  };
 
   return (
     <HeaderContainer>
       <HeaderTitle>Low Code Connect Platform</HeaderTitle>
       <UserMenu>
-          <button onClick={handleLogout}>logout</button>
+        <ProfileButton />
       </UserMenu>
     </HeaderContainer>
   );

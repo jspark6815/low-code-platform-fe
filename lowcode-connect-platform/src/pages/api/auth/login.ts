@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { loginHandler } from '../../../api/auth/loginHandler';
+import { loginHandler } from '../../../services/auth/loginHandler';
 import { setCookie } from '../../../utils/cookies';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
